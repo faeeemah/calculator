@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6f7;
+        }
+
+        .calculator {
+            background-color: #ffb6c1;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+
+        .calculator-display {
+            background-color: #fff;
+            border: none;
+            border-radius: 10px;
+            height: 50px;
+            width: 100%;
+            font-size: 1.5rem;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            text-align: right;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 10px;
+            height: 50px;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ff85c1;
+        }
+
+        .button.clear {
+            background-color: #ff4d6d;
+        }
+
+        .button.clear:hover {
+            background-color: #ff6d8e;
+        }
+
+        .button.cancel {
+            background-color: #ff4500;
+        }
+
+        .button.cancel:hover {
+            background-color: #ff6347;
+        }
+
+        .button.equal {
+            grid-column: span 2;
+            background-color: #ff1493;
+        }
+
+        .button.equal:hover {
+            background-color: #ff4693;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" class="calculator-display" disabled>
+        <div class="calculator-buttons">
+            <button class="button" onclick="appendValue('7')">7</button>
+            <button class="button" onclick="appendValue('8')">8</button>
+            <button class="button" onclick="appendValue('9')">9</button>
+            <button class="button" onclick="appendValue('/')">/</button>
+
+            <button class="button" onclick="appendValue('4')">4</button>
+            <button class="button" onclick="appendValue('5')">5</button>
+            <button class="button" onclick="appendValue('6')">6</button>
+            <button class="button" onclick="appendValue('*')">*</button>
+
+            <button class="button" onclick="appendValue('1')">1</button>
+            <button class="button" onclick="appendValue('2')">2</button>
+            <button class="button" onclick="appendValue('3')">3</button>
+            <button class="button" onclick="appendValue('-')">-</button>
+
+            <button class="button" onclick="appendValue('0')">0</button>
+            <button class="button" onclick="appendValue('.')">.</button>
+            <button class="button clear" onclick="clearDisplay()">C</button>
+            <button class="button" onclick="appendValue('+')">+</button>
+
+            <button class="button cancel" onclick="cancelLast()">&#x21A9;</button>
+            <button class="button equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        function appendValue(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function cancelLast() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+ 
